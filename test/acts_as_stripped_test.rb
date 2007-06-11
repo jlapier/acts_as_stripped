@@ -1,3 +1,6 @@
+# most of this test setup was pulled from Err's ActsAsTextiled tests
+# seems like a nice way to fake AR functionality without hitting a database
+
 $:.unshift File.dirname(__FILE__) + '/../lib'
 
 require 'rubygems'
@@ -5,8 +8,6 @@ require 'yaml'
 require 'active_support'
 require 'action_controller'
 require 'test/unit'
-
-
 
 class ActiveRecord
   class Base
@@ -68,7 +69,7 @@ end
 
 require File.dirname(__FILE__) + '/../init'
 
-
+# our would-be faux ActiveRecord model
 class SomeModel < ActiveRecord::Base
 	acts_as_stripped :name, :description, :number
 end
@@ -93,7 +94,7 @@ class ActsAsStrippedTest < Test::Unit::TestCase
 		assert_equal some_model.description, "this one has unwanted html"
 	end
 	
-	def test_doesnt_strip_non_string
+	def test_makes_non_string_into_string
 		some_model = SomeModel.find(3)
 		assert_equal some_model.attributes["number"], 1001
 		assert_equal some_model.number, "1001"
