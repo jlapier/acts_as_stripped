@@ -20,3 +20,11 @@ class SomeModel < ActiveRecord::Base
 end
 
 If you need to get the unstripped value, you can always use: your_model.attributes["att_name"]
+
+Install with:
+script/plugin install git://github.com/jlapier/acts_as_stripped.git
+
+More info:
+http://offtheline.net/2007/6/14/acts-as-stripped-auto-stripping-html-from-a-field
+
+Copyright (c) 2007 Jason LaPier, released under the MIT license
